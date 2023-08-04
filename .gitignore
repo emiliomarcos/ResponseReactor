@@ -1,4 +1,2 @@
 venv/
-models/
-.rasa/
-.rasa/cache
+.env
