@@ -1,4 +1,5 @@
 import os
+from flask import jsonify
 from dotenv import load_dotenv
 from langchain.document_loaders import PyPDFLoader
 from langchain.text_splitter import TokenTextSplitter
@@ -35,18 +36,19 @@ def run():
     {text}
     Questions:
     """
+    questions_prompt = PromptTemplate(template=prompt_template, input_variables=["text"])
 
     refine_prompt_template = """
-    Take the role of an experienced creator of practice questions from study material. We have the following questions: {current_questions}
+    Take the role of an experienced creator of practice questions from study material. We have the following questions: {existing_answer}
     Improve the questions if you find in necessary and if not just provide the original questions. We are trying to study the most valuable
     questions from the following text:
     {text}
     Questions:
     """
+    refine_questions_prompt = PromptTemplate(template=refine_prompt_template, input_variables=["existing_answer", "text"])
 
-    questions_prompt = PromptTemplate(template=prompt_template, input_variables=["text"])
-    refine_questions_prompt = PromptTemplate(template=refine_prompt_template, input_variables=["text", "current_questions"])
     questions_chain = load_summarize_chain(llm = questions_llm, chain_type="refine", verbose=True, question_prompt=questions_prompt, refine_prompt=refine_questions_prompt)
 
     questions = questions_chain(questions_documents)
-    print(questions)
+    print(questions["output_text"], end='\n')
+    return questions["output_text"]
