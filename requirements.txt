@@ -2,3 +2,4 @@ langchain==0.0.251
 openai==0.27.8
 python-dotenv==1.0.0
 Flask==2.3.2
+pypdf==3.15.0
