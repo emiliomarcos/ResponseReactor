@@ -19,15 +19,15 @@ def run():
     for page in pdf_data:
         pdf_text += page.page_content
 
-    questions_text_splitter = TokenTextSplitter(model_name="gpt-3.5-turbo", chunk_size=10000, chunk_overlap=200)
+    questions_text_splitter = TokenTextSplitter(model_name="gpt-3.5-turbo-16k", chunk_size=10000, chunk_overlap=200)
     questions_text_chunks = questions_text_splitter.split_text(pdf_text)
 
     questions_documents = [Document(page_content=t) for t in questions_text_chunks]
 
-    answers_text_splitter = TokenTextSplitter(model_name="gpt-3.5-turbo", chunk_size=500, chunk_overlap=100)
+    answers_text_splitter = TokenTextSplitter(model_name="gpt-3.5-turbo-16k", chunk_size=500, chunk_overlap=100)
     answers_documents = answers_text_splitter.split_documents(questions_documents)
 
-    questions_llm = ChatOpenAI(openai_api_key=openai_api_key, model_name="gpt-3.5-turbo", temperature=0.5)
+    questions_llm = ChatOpenAI(openai_api_key=openai_api_key, model_name="gpt-3.5-turbo-16k", temperature=0.5)
 
     prompt_template = """
     Take the role of an experienced creator of practice questions from study material. Aim to provide the most valuable questions for an exam
