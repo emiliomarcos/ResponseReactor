@@ -1,5 +1,5 @@
 import os
-from flask import jsonify
+from flask import Response
 from dotenv import load_dotenv
 from langchain.document_loaders import PyPDFLoader
 from langchain.text_splitter import TokenTextSplitter
@@ -7,6 +7,9 @@ from langchain.docstore.document import Document
 from langchain.chat_models import ChatOpenAI
 from langchain.prompts import PromptTemplate
 from langchain.chains.summarize import load_summarize_chain
+from langchain.embeddings.openai import OpenAIEmbeddings
+from langchain.vectorstores import Chroma
+from langchain.chains import RetrievalQA
 
 def run():
     load_dotenv()
@@ -51,4 +54,28 @@ def run():
 
     questions = questions_chain(questions_documents)
     print(questions["output_text"], end='\n')
-    return questions["output_text"]
+
+    embeddings = OpenAIEmbeddings(openai_api_key=openai_api_key)
+    vector_store = Chroma.from_documents(answers_documents, embeddings)
+
+    answers_llm = ChatOpenAI(openai_api_key=openai_api_key, model_name="gpt-3.5-turbo-16k", temperature=0.2)
+
+    questions_list = questions.split("/n")
+
+    answers_chain = RetrievalQA.from_chain_type(llm = answers_llm, chain_type="stuff", verbose=True, retriever=vector_store.as_retriever(k=2))
+
+    study_material = ""
+
+    for question in questions:
+        print("Question: ", question)
+        answer = answers_chain.run(question)
+        print("Answer: ", answer)
+        print("-------------------------------\n")
+        with open("./data/study.txt", "a") as file:
+            file.write("Question: " + question + "\n")
+            file.write("Answer: " + answer + "\n")
+            file.write("-------------------------------\n")
+            study_material += f"Question: {question}\nAnswer: {answer}\n-------------------------------\n"
+            file.close()
+
+    return Response(study_material, mimetype='text/plain')
