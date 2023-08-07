@@ -12,7 +12,7 @@ def run():
     load_dotenv()
     openai_api_key = os.getenv('OPENAI_API_KEY')
 
-    pdf_file = PyPDFLoader("./great_work.pdf")
+    pdf_file = PyPDFLoader("./data/how_to_do_great_work.pdf")
     pdf_data = pdf_file.load()
 
     pdf_text = ""
