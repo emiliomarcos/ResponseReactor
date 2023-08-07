@@ -60,13 +60,13 @@ def run():
 
     answers_llm = ChatOpenAI(openai_api_key=openai_api_key, model_name="gpt-3.5-turbo-16k", temperature=0.2)
 
-    questions_list = questions.split("/n")
+    questions_list = questions["output_text"].split("/n")
 
     answers_chain = RetrievalQA.from_chain_type(llm = answers_llm, chain_type="stuff", verbose=True, retriever=vector_store.as_retriever(k=2))
 
     study_material = ""
 
-    for question in questions:
+    for question in questions_list:
         print("Question: ", question)
         answer = answers_chain.run(question)
         print("Answer: ", answer)
