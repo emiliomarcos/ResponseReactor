@@ -11,11 +11,11 @@ from langchain.embeddings.openai import OpenAIEmbeddings
 from langchain.vectorstores import Chroma
 from langchain.chains import RetrievalQA
 
-def run():
+def run(file_path):
     load_dotenv()
     openai_api_key = os.getenv('OPENAI_API_KEY')
 
-    pdf_file = PyPDFLoader("./data/how_to_do_great_work.pdf")
+    pdf_file = PyPDFLoader(file_path)
     pdf_data = pdf_file.load()
 
     pdf_text = ""
