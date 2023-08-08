@@ -13,6 +13,10 @@ def allowed_file(filename):
     return '.' in filename and \
         filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
+@app.route('/')
+def root():
+    return '<h1>Response Reactor</h1>'
+
 @app.route('/bot1')
 def run_bot1():
     response = bot1.run()
