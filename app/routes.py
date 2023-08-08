@@ -36,7 +36,7 @@ def run_bot2():
         file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
         file.save(file_path)
 
-        response = bot2.run()
+        response = bot2.run(file_path)
         return response
 
     return 'Invalid file path', 400
