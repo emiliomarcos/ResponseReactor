@@ -34,7 +34,6 @@ def run_bot2():
     if file and allowed_file(file.filename):
         filename = secure_filename(file.filename)
         file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
-        print("Filepath:::::::::", {file_path})
         file.save(file_path)
 
         response = bot2.run(file_path)
