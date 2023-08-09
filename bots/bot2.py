@@ -43,7 +43,7 @@ def run(file_path):
 
     refine_prompt_template = """
     Take the role of an experienced creator of practice questions from study material. We have the following questions: {existing_answer}
-    Improve the questions if you find in necessary and if not just provide the original questions. We are trying to study the most valuable
+    Improve the five questions if you find in necessary and if not just provide the original questions. We are trying to study the most valuable
     questions from the following text:
     {text}
     Questions:
