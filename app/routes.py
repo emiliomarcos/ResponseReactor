@@ -6,8 +6,10 @@ from bots import bot1, bot2
 from werkzeug.utils import secure_filename
 
 ALLOWED_EXTENSIONS = {'pdf'}
+app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
 
 def allowed_file(filename):
+    filename = secure_filename(filename)
     return '.' in filename and \
         filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
