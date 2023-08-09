@@ -1,4 +1,7 @@
 FROM python:3.9-slim-buster
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends g++ build-essential && \
+    rm -rf /var/lib/apt/lists/*
 RUN adduser --disabled-password --gecos '' myuser
 WORKDIR /app
 USER root
