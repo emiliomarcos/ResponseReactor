@@ -40,10 +40,12 @@ def run_bot2():
 
         try:
             with open(file_path, 'rb') as pdf_file:
-                reader = PyPDF2.PdfFileReader(pdf_file)
-                if reader.isEncrypted:
-                    return 'Encrypted PDF', 400
+                parser = PDFParser(pdf_file)
+                PDFDocument(parser)
+                # if parser.isEncrypted:
+                #     return 'Encrypted PDF', 400
         except:
+            os.remove(file_path)
             return 'Invalid PDF', 400
 
         os.chmod(file_path, 0o600)
