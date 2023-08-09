@@ -1,13 +1,13 @@
 import os
+import tempfile
 from flask import request
 from app import app
 from bots import bot1, bot2
-from werkzeug.utils import secure_filename
+from pdfminer.pdfparser import PDFParser
+from pdfminer.pdfdocument import PDFDocument
 
-UPLOAD_FOLDER = './uploads'
 ALLOWED_EXTENSIONS = {'pdf'}
-
-app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
 
 def allowed_file(filename):
     return '.' in filename and \
@@ -32,11 +32,24 @@ def run_bot2():
         return 'No selected file', 400
 
     if file and allowed_file(file.filename):
-        filename = secure_filename(file.filename)
-        file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
-        file.save(file_path)
+        file_descriptor, file_path = tempfile.mkstemp(suffix='.pdf')
 
-        response = bot2.run(file_path)
-        return response
+        try:
+            with os.fdopen(file_descriptor, 'wb') as temp:
+                file.save(temp)
+
+            with open(file_path, 'rb') as pdf_file:
+                parser = PDFParser(pdf_file)
+                PDFDocument(parser)
+
+            response = bot2.run(file_path)
+
+            return response
+
+        except Exception as e:
+            return 'Invalid PDF: {}'.format(str(e)), 400
+
+        finally:
+            os.remove(file_path)
 
     return 'Invalid file path', 400

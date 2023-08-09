@@ -34,7 +34,7 @@ def run(file_path):
     questions_llm = ChatOpenAI(openai_api_key=openai_api_key, model_name="gpt-3.5-turbo-16k", temperature=0.5)
 
     prompt_template = """
-    Take the role of an experienced creator of practice questions from study material. Aim to provide the most valuable questions for an exam
+    Take the role of an experienced creator of practice questions from study material. Aim to provide the five most valuable questions for an exam
     from the following text:
     {text}
     Questions:
@@ -43,7 +43,7 @@ def run(file_path):
 
     refine_prompt_template = """
     Take the role of an experienced creator of practice questions from study material. We have the following questions: {existing_answer}
-    Improve the questions if you find in necessary and if not just provide the original questions. We are trying to study the most valuable
+    Improve the five questions if you find in necessary and if not just provide the original questions. We are trying to study the most valuable
     questions from the following text:
     {text}
     Questions:
