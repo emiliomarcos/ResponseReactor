@@ -214,3 +214,33 @@ Answer: 1. The work you choose needs to have the qualities of being something yo
 17. The text does not specifically describe the process of copying in the context of doing great work.
 18. The dangers of copying, according to the text, are that it can lead to unoriginal and uninspired work. It suggests that great work often has a tincture of strangeness and that chasing outlier ideas, even if others are not interested in them, can be a better bet for doing great work.
 -------------------------------
+Question: 1. What are the three qualities that the work you choose needs to have?
+2. How can you determine what to work on?
+3. What are the four steps to achieving great work?
+4. How does curiosity relate to originality?
+5. Why is it important to start small and evolve your ideas?
+Answer: 1. The work you choose needs to have three qualities: a natural aptitude, a deep interest, and the potential for great work.
+2. To determine what to work on, you need to start working and experimenting. Guess and pick something to get started, and through the process of working, you will figure out what you enjoy and what you are good at.
+3. The four steps to achieving great work are: 
+   a) Choose a field that aligns with your aptitude and interest.
+   b) Learn enough to reach the frontier of knowledge in that field.
+   c) Notice the gaps in knowledge and explore them.
+   d) Focus on promising ideas and projects.
+4. Curiosity is closely related to originality. By being curious, you are more likely to notice gaps in knowledge and explore unconventional ideas. Curiosity can drive you to ask questions and pursue unique paths, leading to original and innovative work.
+5. Starting small and evolving your ideas is important because it allows you to learn and adapt along the way. By starting with smaller projects, you can gain experience, build skills, and refine your ideas. As you grow and evolve, your ideas will become more ambitious and aligned with your interests and abilities.
+-------------------------------
+Question: 1. What are the three qualities that the work you choose needs to have?
+2. How can you determine what work to focus on?
+3. What are the four steps to achieving great work?
+4. What are the benefits of starting small and evolving your work?
+5. How can you overcome the passivity induced by schools?
+Answer: 1. The work you choose needs to have three qualities: a natural aptitude, a deep interest, and the potential for great work.
+2. To determine what work to focus on, you need to start working and experimenting. Guess and pick something to get started, and through experience, you will figure out what you enjoy and excel at.
+3. The four steps to achieving great work are: 
+   a. Decide what to work on, based on your aptitude and interest.
+   b. Develop a habit of working on your own projects.
+   c. Work consistently and focus on something you're genuinely interested in.
+   d. Continuously learn and improve, and be open to new opportunities and connections.
+4. Starting small and evolving your work allows you to build momentum and make progress. Consistency and compounding efforts lead to exponential growth and greater achievements over time.
+5. To overcome the passivity induced by schools, you need to take ownership of your own learning and actively pursue your interests. Don't rely solely on the educational system to guide you, but instead, explore and experiment to discover what truly excites you.
+-------------------------------
