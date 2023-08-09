@@ -255,3 +255,18 @@ Answer: 1. The work you choose needs to have three qualities: a natural aptitude
 4. Curiosity and asking questions are important because they help you explore new ideas and perspectives. They can lead to breakthroughs and uncover hidden opportunities.
 5. Starting small and evolving your work allows you to adapt and learn as you go. It gives you the flexibility to explore different paths and make adjustments based on your evolving interests and skills. Planning in advance can limit your options and prevent you from discovering new possibilities.
 -------------------------------
+Question: 1. What are the three qualities that the work you choose needs to have?
+2. How can you determine what work to focus on?
+3. What are the four steps to achieving great work?
+4. How does curiosity contribute to originality?
+5. Why is it important to start small and evolve your work?
+Answer: 1. The work you choose needs to have three qualities: a natural aptitude, a deep interest, and the potential for doing great work.
+2. To determine what work to focus on, you need to start working on different projects and explore various fields. Guessing and trying different things will help you figure out what you have an aptitude for and what interests you.
+3. The four steps to achieving great work are: 
+   a) Choose a field that aligns with your aptitude and interest.
+   b) Learn enough about the field to reach the frontier of knowledge.
+   c) Notice the gaps in the existing knowledge and explore them.
+   d) Focus on promising gaps and work hard to make significant contributions.
+4. Curiosity plays a crucial role in originality because it drives you to explore new ideas and ask questions that others may overlook. It helps you notice gaps in knowledge and pursue unconventional paths, leading to unique and innovative work.
+5. Starting small and evolving your work is important because it allows you to build a strong foundation and gain expertise in your chosen field. As you grow and develop, your interests and projects will naturally evolve, leading to more exciting and ambitious work. Starting small also allows you to learn from your experiences and make adjustments along the way, increasing your chances of achieving great work.
+-------------------------------
