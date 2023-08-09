@@ -42,8 +42,6 @@ def run_bot2():
                 parser = PDFParser(pdf_file)
                 PDFDocument(parser)
 
-            os.chmod(file_path, 0o600)
-
             response = bot2.run(file_path)
 
             return response
