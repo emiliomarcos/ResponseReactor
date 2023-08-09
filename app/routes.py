@@ -46,8 +46,8 @@ def run_bot2():
 
             return response
 
-        except:
-            return 'Invalid PDF', 400
+        except Exception as e:
+            return 'Invalid PDF: {}'.format(str(e)), 400
 
         finally:
             os.remove(file_path)
