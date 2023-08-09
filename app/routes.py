@@ -4,7 +4,8 @@ from flask import request
 from app import app
 from bots import bot1, bot2
 from werkzeug.utils import secure_filename
-import pypdf
+from pdfminer.pdfparser import PDFParser
+from pdfminer.pdfdocument import PDFDocument
 
 ALLOWED_EXTENSIONS = {'pdf'}
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
@@ -13,13 +14,6 @@ def allowed_file(filename):
     filename = secure_filename(filename)
     return '.' in filename and \
         filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
-
-def is_pdf(file_stream):
-    try:
-        pypdf.PdfFileReader(file_stream)
-        return True
-    except pypdf.PdfReadError:
-        return False
 
 @app.route('/')
 def root():
@@ -40,21 +34,24 @@ def run_bot2():
         return 'No selected file', 400
 
     if file and allowed_file(file.filename):
-        with tempfile.NamedTemporaryFile() as temp:
+        with tempfile.NamedTemporaryFile(delete=False) as temp:
             file.save(temp)
-            temp.seek(0)
-
-            try:
-                pypdf.PdfFileReader(temp.name)
-            except:
-                return 'Invalid PDF', 400
-
             file_path = temp.name
 
-            os.chmod(file_path, 0o600)
+        try:
+            with open(file_path, 'rb') as pdf_file:
+                reader = PyPDF2.PdfFileReader(pdf_file)
+                if reader.isEncrypted:
+                    return 'Encrypted PDF', 400
+        except:
+            return 'Invalid PDF', 400
 
-            response = bot2.run(file_path)
+        os.chmod(file_path, 0o600)
 
-            return response
+        response = bot2.run(file_path)
+
+        os.remove(file_path)
+
+        return response
 
     return 'Invalid file path', 400
