@@ -1,13 +1,11 @@
 import os
+import tempfile
 from flask import request
 from app import app
 from bots import bot1, bot2
 from werkzeug.utils import secure_filename
 
-UPLOAD_FOLDER = './uploads'
 ALLOWED_EXTENSIONS = {'pdf'}
-
-app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 def allowed_file(filename):
     return '.' in filename and \
@@ -32,11 +30,14 @@ def run_bot2():
         return 'No selected file', 400
 
     if file and allowed_file(file.filename):
-        filename = secure_filename(file.filename)
-        file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
-        file.save(file_path)
+        with tempfile.NamedTemporaryFile() as temp:
+            temp.write(file.read())
+            file_path = temp.name
 
-        response = bot2.run(file_path)
-        return response
+            os.chmod(file_path, 0o600)
+
+            response = bot2.run(file_path)
+
+            return response
 
     return 'Invalid file path', 400
