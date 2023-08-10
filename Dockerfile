@@ -10,5 +10,5 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 RUN chown -R myuser:myuser /app
 USER myuser
-CMD ["gunicorn", "-b", "0.0.0.0:5000", "app:app"]
+CMD ["gunicorn", "--log-file", "-", "-b", "0.0.0.0:5000", "app:app"]
 EXPOSE 5000
