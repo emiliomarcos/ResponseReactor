@@ -7,8 +7,8 @@ WORKDIR /app
 USER root
 COPY requirements.txt ./
 RUN pip install --no-cache-dir -r requirements.txt
+COPY . .
 RUN chown -R myuser:myuser /app
 USER myuser
-COPY . .
 CMD ["gunicorn", "-b", "0.0.0.0:5000", "app:app"]
 EXPOSE 5000
