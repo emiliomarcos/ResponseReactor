@@ -6,7 +6,6 @@ RUN adduser --disabled-password --gecos '' myuser
 WORKDIR /app
 USER root
 COPY requirements.txt ./
-ENV HNSWLIB_NO_NATIVE=1
 RUN pip install --no-cache-dir -r requirements.txt
 RUN chown -R myuser:myuser /app
 USER myuser
