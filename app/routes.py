@@ -5,6 +5,7 @@ from app import app
 from bots import bot1, bot2
 from pdfminer.pdfparser import PDFParser
 from pdfminer.pdfdocument import PDFDocument
+from flask_cors import cross_origin
 
 ALLOWED_EXTENSIONS = {'pdf'}
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
@@ -23,6 +24,7 @@ def run_bot1():
     return response
 
 @app.route('/bot2', methods=['POST'])
+@cross_origin(origins=["http://localhost:5173"])
 def run_bot2():
     if 'file' not in request.files:
         return 'No file path', 400
