@@ -5,7 +5,7 @@ from app import app
 from bots import bot1, bot2
 from pdfminer.pdfparser import PDFParser
 from pdfminer.pdfdocument import PDFDocument
-from flask_cors import cross_origin
+# from flask_cors import cross_origin
 
 ALLOWED_EXTENSIONS = {'pdf'}
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
@@ -24,12 +24,13 @@ def run_bot1():
     return response
 
 @app.route('/bot2', methods=['POST'])
+# @cross_origin(origin='localhost',port=5173)
 def run_bot2():
-    allowed_origins = ['http://localhost:5173']
-    origin = request.headers.get('Origin')
+    # allowed_origins = ['http://localhost:5173']
+    # origin = request.headers.get('Origin')
 
-    if origin not in allowed_origins:
-        return 'Forbidden: Invalid Origin', 403
+    # if origin not in allowed_origins:
+    #     return 'Forbidden: Invalid Origin', 403
 
     if 'file' not in request.files:
         return 'No file path', 400
@@ -49,9 +50,9 @@ def run_bot2():
                 parser = PDFParser(pdf_file)
                 PDFDocument(parser)
 
-            bot_response = bot2.run(file_path)
+            response = bot2.run(file_path)
 
-            return make_cors_response(bot_response, 200)
+            return response, 200
 
         except Exception as e:
             return 'Invalid PDF: {}'.format(str(e)), 400
@@ -61,9 +62,9 @@ def run_bot2():
 
     return 'Invalid file path', 400
 
-def make_cors_response(data, status_code):
-    response = make_response(data, status_code)
-    response.headers['Access-Control-Allow-Origin'] = 'http://localhost:5173'
-    response.headers['Access-Control-Allow-Methods'] = 'POST'
-    response.headers['Access-Control-Allow-Headers'] = 'Content-Type'
-    return response
+# def make_cors_response(data, status_code):
+#     response = make_response(data, status_code)
+#     response.headers['Access-Control-Allow-Origin'] = 'http://localhost:5173'
+#     response.headers['Access-Control-Allow-Methods'] = 'POST'
+#     response.headers['Access-Control-Allow-Headers'] = 'Content-Type'
+#     return response
