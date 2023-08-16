@@ -2,7 +2,7 @@ import os
 import tempfile
 from flask import request, make_response
 from app import app
-from bots import bot1, bot2
+from bots import bot1, bot2, bot3
 from pdfminer.pdfparser import PDFParser
 from pdfminer.pdfdocument import PDFDocument
 # from flask_cors import cross_origin
@@ -61,6 +61,11 @@ def run_bot2():
             os.remove(file_path)
 
     return 'Invalid file path', 400
+
+@app.route('/bot3')
+def run_bot3():
+    response = bot3.run()
+    return response
 
 # def make_cors_response(data, status_code):
 #     response = make_response(data, status_code)
